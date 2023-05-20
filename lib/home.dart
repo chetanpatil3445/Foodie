@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:foodie/routes.dart';
+import 'package:get/get.dart';
 
+import 'Menu.dart';
 
 class home extends StatefulWidget {
   const home({Key? key}) : super(key: key);
@@ -9,13 +12,11 @@ class home extends StatefulWidget {
 }
 
 class _homeState extends State<home> {
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFAFAFA),
+      backgroundColor:Color(0xFFEEEEEE),
+
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
@@ -28,13 +29,13 @@ class _homeState extends State<home> {
               children: [
                 SizedBox(width: 10,),
                 Padding(
-                  padding: const EdgeInsets.only(left: 2.0 ,),
+                  padding: const EdgeInsets.only(left: 10.0),
                   child: Container(
                     width: 280,
                     height: 45,
                     padding: EdgeInsets.all(4),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(30)),
                       border: Border.all()
                     ),
@@ -49,6 +50,7 @@ class _homeState extends State<home> {
                     ),
                   ),
                 ),
+
                 SizedBox(width: 10),
                 Container(
                   height: 45,
@@ -120,7 +122,12 @@ class _homeState extends State<home> {
                        bottom: 24,
                        left: 1,
                        right: 2,
-                       child: Image.asset('asset/images/Biryani.png',height: 120,),
+                       child: InkWell(
+                           onTap: () {
+                             // Get.toNamed(MyRoutes.menuRoute);
+                             Navigator.push(context, MaterialPageRoute(builder: (context) => Menu()));
+                           },
+                           child: Image.asset('asset/images/Biryani.png',height: 120,)),
                      ),
                    ],
                  ),
@@ -164,31 +171,43 @@ class _homeState extends State<home> {
               child: Image.asset('asset/images/Rectangle9.png'),
             ),
           ],
-
-     ),
+        ),
       ),
-      drawer: Drawer(),
-      bottomNavigationBar: BottomNavigationBar(
 
-        items: [
+      drawer: const Drawer(),
+
+      bottomNavigationBar: BottomNavigationBar(
+        iconSize:37,
+        items: const [
           BottomNavigationBarItem(
-            backgroundColor: Colors.grey,
-            icon: Icon(Icons.home),
-            label: 'Home',
+              backgroundColor: Colors.grey,
+            icon: Icon(Icons.home_filled ,
+                color: Colors.black),
+            label: ""
           ),
+
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Search',
+            icon: Icon(Icons.favorite,
+                color: Colors.black,
+            ),
+            label: ""
           ),
+
           BottomNavigationBarItem(
-            icon: Icon(Icons.discount),
-            label: 'Cart',
+            icon: Icon(Icons.discount,
+                color: Colors.black,
+            ),
+            label: '',
           ),
+
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
+            icon: Icon(Icons.person,
+                color: Colors.black
+            ),
+            label: '',
           ),
-        ],),
+        ],
+      ),
     );
   }
 }

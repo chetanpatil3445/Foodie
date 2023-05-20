@@ -27,7 +27,7 @@ class _getstartState extends State<getstart> {
                     Image.asset("asset/images/GetStart.png", fit: BoxFit.fill,),
                    SwipeableButtonView(
                      activeColor: Colors.red,
-                     onFinish: () => Get..toNamed(MyRoutes.hometRoute),
+                     onFinish: () => Get..toNamed(MyRoutes.homeRoute),
                      onWaitingProcess: () {
                        Future.delayed(Duration(seconds: 2), () {
                          setState(() {
