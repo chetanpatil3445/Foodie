@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:foodie/home.dart';
+import 'package:foodie/Screens/home.dart';
 import 'package:foodie/routes.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'Cart.dart';
 
-import 'card1.dart';
 class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
 
@@ -149,14 +149,14 @@ class _MenuState extends State<Menu> {
               Container(
                 child: Image.asset("asset/images/Line7.png"),
               ),
-
               SizedBox(height: 25),
+              Column(children: [
+
               InkWell(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => Card1()));
                 },
                 child: Container(
-                  //decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),
                    color: Colors.white,
                   child: Stack(
                     children: [
@@ -198,88 +198,145 @@ class _MenuState extends State<Menu> {
                   ),
                 ),
               ),
-
-              SizedBox(height: 30),
-              Container(
-                height: 142,
-                width: 322,
-                child: Stack(
-                  children: [
-                    Image.asset("asset/images/istockphoto-1305452646-170667a1.png"),
-                    Positioned(
-                      top: 5,
-                      child:  IconButton(color: Colors.white,
-                        icon: Icon(
-                          _isLiked ? Icons.favorite : Icons.favorite_border ,
-                          color: _isLiked ? Colors.red : null,
+              SizedBox(height: 20,),
+              InkWell(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Card1()));
+                },
+                child: Card(
+                  child: Container(
+                    color: Colors.white,
+                    // decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                            child: Image.asset("asset/images/Line7.png",width: 322, height: 240,)),
+                        Positioned(
+                            bottom: 48,
+                            child:Image.asset("asset/images/handi.png",width: 322, height: 240,)),
+                        Positioned(
+                          bottom: 110,
+                          left: 20,
+                          child: Text("Chiken Biryani",
+                            // textAlign: TextAlign.values.last,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
                         ),
-                        onPressed: _toggleLike,
-                      ),),
-                  ],
+                        Positioned(
+                          top: 100,
+                          right: 20,
+                          width: 47,
+                          height: 25,
+                          child: Image.asset("asset/images/Group62.png"),
+                        ),
+                        Positioned(
+                          top: 1,
+                          child:  IconButton(color: Colors.white,
+                            icon: Icon(
+                              _isLiked ? Icons.favorite : Icons.favorite_border ,
+                              color: _isLiked ? Colors.red : null,
+                            ),
+                            onPressed: _toggleLike,
+                          ),),
+                        Positioned(
+                          top: 140,
+                          left: 10,
+                          child: Image.asset("asset/images/Group55.png"),
+                        ),
+                        Positioned(
+                            bottom: 30,
+                            left: 10,
+                            child: Image.asset("asset/images/freedeltext.png")),
+                        Positioned(
+                            bottom: 5,
+                            left: 10,
+                            child: Image.asset("asset/images/Group57.png")),
+                        Positioned(
+                            bottom: 1,
+                            right: 10,
+                            child: Text("300 For One",style: TextStyle(color: Colors.red, fontWeight: FontWeight.w900),)),
+                        Positioned(
+                            bottom: 1,
+                            right: 82,
+                            child: Text("₹"))
+
+                      ],
+                    ),
+                  ),
                 ),
               ),
-
-              SizedBox(height: 30),
-              Container(
-                child: Stack(
-                  children: [
-                    Image.asset("asset/images/Rectangle9.png"),
-                    Positioned(
-                      top: 5,
-                      child:  IconButton(color: Colors.white,
-                        icon: Icon(
-                          _isLiked ? Icons.favorite : Icons.favorite_border ,
-                          color: _isLiked ? Colors.red : null,
-                        ),
-                        onPressed: _toggleLike,
-                      ),),
-                  ],
-                ),
-              ),
-
-              SizedBox(height: 30),
-              Container(
-                //decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10))),
-                color: Colors.white,
-                child: Stack(
-                  children: [
-                    Image.asset("asset/images/Group60.png"),
-                    Positioned(
-                      bottom: 90,
-                      left: 20,
-                      child: Text("Hotel name\nChiken Dam Biryani",
-                        // textAlign: TextAlign.values.last,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
+               SizedBox(height: 20,),
+              Card(
+                child: Container(
+                  color: Colors.white,
+                 // decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Stack(
+                    children: [
+                      Positioned(
+                          child: Image.asset("asset/images/Line7.png",width: 322, height: 240,)),
+                      Positioned(
+                        bottom: 44,
+                          child:Image.asset("asset/images/Rectangle9.png",width: 322, height: 240,)),
+                      Positioned(
+                        bottom: 110,
+                        left: 20,
+                        child: Text("Chiken leg piece",
+                          // textAlign: TextAlign.values.last,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),
                         ),
                       ),
-                    ),
-                    Positioned(
-                      top: 140,
-                      right: 20,
-                      width: 47,
-                      height: 25,
-                      child: Image.asset("asset/images/Group62.png"),
-                    ),
-                    Positioned(
-                      top: 5,
-                      child:  IconButton(color: Colors.white,
-                        icon: Icon(
-                          _isLiked ? Icons.favorite : Icons.favorite_border ,
-                          color: _isLiked ? Colors.red : null,
-                        ),
-                        onPressed: _toggleLike,
-                      ),),
-                    Positioned(
-                      top: 170,
-                      left: 10,
-                      child: Image.asset("asset/images/Group55.png"),
-                    ),
-                  ],
+                      Positioned(
+                        top: 100,
+                        right: 20,
+                        width: 47,
+                        height: 25,
+                        child: Image.asset("asset/images/Group62.png"),
+                      ),
+                      Positioned(
+                        top: 1,
+                        child:  IconButton(color: Colors.white,
+                          icon: Icon(
+                            _isLiked ? Icons.favorite : Icons.favorite_border ,
+                            color: _isLiked ? Colors.red : null,
+                          ),
+                          onPressed: _toggleLike,
+                        ),),
+                      Positioned(
+                        top: 140,
+                        left: 10,
+                        child: Image.asset("asset/images/Group55.png"),
+                      ),
+                      Positioned(
+                          bottom: 30,
+                          left: 10,
+                          child: Image.asset("asset/images/freedeltext.png")),
+                      Positioned(
+                          bottom: 5,
+                          left: 10,
+                          child: Image.asset("asset/images/Group57.png")),
+                      Positioned(
+                          bottom: 1,
+                          right: 10,
+                          child: Text("350 For One",style: TextStyle(color: Colors.red, fontWeight: FontWeight.w900),)),
+                      Positioned(
+                          bottom: 1,
+                          right: 82,
+                          child: Text("₹"))
+
+                    ],
+                  ),
                 ),
               ),
+              SizedBox(height: 30,)
+              ],)
             ],
           ),
         ),
