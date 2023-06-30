@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:foodie/Screens/product_list_screen.dart';
 import 'package:foodie/Screens/home.dart';
 import 'package:foodie/routes.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'Cart.dart';
+import '../Api_provider/cart_screen.dart';
+import 'Biryani_Menu.dart';
 
 class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
@@ -35,40 +37,29 @@ class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white70,
+        iconTheme: IconThemeData(
+        color: Colors.black, // Replace this with the desired color for the arrow
+      ),),
       backgroundColor:Color(0xFFEEEEEE),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
             children: [
-              SizedBox(height: 15),
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      InkWell(
-                        splashColor: Colors.black,
-                        onTap: (){ Navigator.push(context, MaterialPageRoute(builder: (context) => home()));},
-                        child: Container(
-                          width: 70,
-                          height: 31,
-                          color: Colors.red,
-                          child: Center(child: Text("Restaurants")),),
-                      ),
-                      SizedBox(),
-                      InkWell(
-                        splashColor: Colors.black,
-                        onTap: () {  Navigator.push(context, MaterialPageRoute(builder: (context) => home()));},
-                        child: Container(
-                          width: 70,
-                          height: 31,
-                          color: Colors.white,
-                          child: Center(child: Text("Dishes")),),
-                      )
-                    ],
-                  ),
-                ),
-              ),
+
+            /* InkWell(
+               splashColor: Colors.black,
+               onTap: (){ Navigator.push(context, MaterialPageRoute(builder: (context) => home()));},
+               child: Container(
+                 width: 50,
+                 height: 31,
+                 decoration: BoxDecoration(
+                     color: Colors.red,
+                     border: Border.all(width: 1)
+                 ),
+                 child: Center(child: Text("back",style: TextStyle(color: Colors.white),)),),
+             ),*/
               SizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -130,31 +121,16 @@ class _MenuState extends State<Menu> {
                 child: Image.asset("asset/images/Line7.png"),
               ),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                      onTap: () {
-                        Get.toNamed(MyRoutes.homeRoute);
-                      },
-                      child: Image.asset("asset/images/Group41.png")),
-                  Image.asset("asset/images/Group45.png"),
-                  Image.asset("asset/images/Group44.png"),
-                  Image.asset("asset/images/Group43.png"),
-                  Image.asset("asset/images/Group42.png"),
-                ],
-              ),
 
-              SizedBox(height: 20),
-              Container(
-                child: Image.asset("asset/images/Line7.png"),
-              ),
+
+
+
               SizedBox(height: 25),
               Column(children: [
 
               InkWell(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Card1()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ProductListScreen()));
                 },
                 child: Container(
                    color: Colors.white,
@@ -198,79 +174,97 @@ class _MenuState extends State<Menu> {
                   ),
                 ),
               ),
-              SizedBox(height: 20,),
-              InkWell(
+
+
+              ],)
+
+            ],
+          ),
+
+        ),
+      ),
+
+    );
+  }
+}
+
+
+
+
+
+/*
+
+SizedBox(height: 20,),
+*/
+/*InkWell(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => Card1()));
                 },
                 child: Card(
-                  child: Container(
-                    color: Colors.white,
-                    // decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(10))),
-                    child: Stack(
-                      children: [
-                        Positioned(
-                            child: Image.asset("asset/images/Line7.png",width: 322, height: 240,)),
-                        Positioned(
-                            bottom: 48,
-                            child:Image.asset("asset/images/handi.png",width: 322, height: 240,)),
-                        Positioned(
-                          bottom: 110,
-                          left: 20,
-                          child: Text("Chiken Biryani",
-                            // textAlign: TextAlign.values.last,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                            ),
+                  child: Stack(
+                    children: [
+                      Image.asset("asset/images/Line7.png",width: 322, height: 240,),
+                      Positioned(
+                          bottom: 48,
+                          child:Image.asset("asset/images/handi.png",width: 322, height: 240,)),
+                      Positioned(
+                        bottom: 110,
+                        left: 20,
+                        child: Text("Chiken Biryani",
+                          // textAlign: TextAlign.values.last,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
                           ),
                         ),
-                        Positioned(
-                          top: 100,
-                          right: 20,
-                          width: 47,
-                          height: 25,
-                          child: Image.asset("asset/images/Group62.png"),
-                        ),
-                        Positioned(
-                          top: 1,
-                          child:  IconButton(color: Colors.white,
-                            icon: Icon(
-                              _isLiked ? Icons.favorite : Icons.favorite_border ,
-                              color: _isLiked ? Colors.red : null,
-                            ),
-                            onPressed: _toggleLike,
-                          ),),
-                        Positioned(
-                          top: 140,
+                      ),
+                      Positioned(
+                        top: 100,
+                        right: 20,
+                        width: 47,
+                        height: 25,
+                        child: Image.asset("asset/images/Group62.png"),
+                      ),
+                      Positioned(
+                        top: 1,
+                        child:  IconButton(color: Colors.white,
+                          icon: Icon(
+                            _isLiked ? Icons.favorite : Icons.favorite_border ,
+                            color: _isLiked ? Colors.red : null,
+                          ),
+                          onPressed: _toggleLike,
+                        ),),
+                      Positioned(
+                        top: 140,
+                        left: 10,
+                        child: Image.asset("asset/images/Group55.png"),
+                      ),
+                      Positioned(
+                          bottom: 30,
                           left: 10,
-                          child: Image.asset("asset/images/Group55.png"),
-                        ),
-                        Positioned(
-                            bottom: 30,
-                            left: 10,
-                            child: Image.asset("asset/images/freedeltext.png")),
-                        Positioned(
-                            bottom: 5,
-                            left: 10,
-                            child: Image.asset("asset/images/Group57.png")),
-                        Positioned(
-                            bottom: 1,
-                            right: 10,
-                            child: Text("300 For One",style: TextStyle(color: Colors.red, fontWeight: FontWeight.w900),)),
-                        Positioned(
-                            bottom: 1,
-                            right: 82,
-                            child: Text("₹"))
+                          child: Image.asset("asset/images/freedeltext.png")),
+                      Positioned(
+                          bottom: 5,
+                          left: 10,
+                          child: Image.asset("asset/images/Group57.png")),
+                      Positioned(
+                          bottom: 1,
+                          right: 10,
+                          child: Text("300 For One",style: TextStyle(color: Colors.red, fontWeight: FontWeight.w900),)),
+                      Positioned(
+                          bottom: 1,
+                          right: 82,
+                          child: Text("₹"))
 
-                      ],
-                    ),
+                    ],
                   ),
                 ),
-              ),
-               SizedBox(height: 20,),
-              Card(
+              ),*//*
+
+            SizedBox(height: 20,),
+             */
+             /*  Card(
                 child: Container(
                   color: Colors.white,
                  // decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -334,15 +328,4 @@ class _MenuState extends State<Menu> {
                     ],
                   ),
                 ),
-              ),
-              SizedBox(height: 30,)
-              ],)
-            ],
-          ),
-        ),
-      ),
-
-    );
-  }
-}
-
+              ),*/

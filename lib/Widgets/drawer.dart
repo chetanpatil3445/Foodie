@@ -28,7 +28,7 @@ class DrawerWidget extends StatelessWidget {
                   )),
               decoration: BoxDecoration(
                   //color: Colors.green
-                  color: Color(0xFFD50000),
+                  color: Colors.grey,
 
             ),
               accountEmail: Text("patilc146@gmail.com"),

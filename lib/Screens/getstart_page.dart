@@ -15,9 +15,7 @@ class _getstartState extends State<getstart> {
   bool isfinished = false;
   @override
   Widget build(BuildContext context) {
-    return
-
-         Container(
+    return Container(
              color: Color(0xFFFF0000),
            child: Column(
             children: [
@@ -27,31 +25,6 @@ class _getstartState extends State<getstart> {
                   child: Stack(
                     children: [
                       Image.asset("asset/images/Get1Start.png", fit: BoxFit.fill,width: double.infinity,height: double.infinity,),
-                    /* Positioned(
-                      // bottom: 20,
-                       child: SwipeableButtonView(
-                         activeColor: Colors.white,
-                         onFinish: () async {
-                           await Navigator.push(context, MaterialPageRoute(builder: (context) => home()));
-                         },
-                         onWaitingProcess: () {
-                           Future.delayed(const Duration(seconds: 2), () {
-                             setState(() {
-                               isfinished = true;
-                             });
-                           });
-                         },
-                         isFinished: isfinished,
-                         buttonText:" Get started",
-                         buttontextstyle: const TextStyle(
-                           color: Colors.black, fontSize: 22, fontWeight: FontWeight.w900 ,),
-                         buttonColor: Colors.black,
-                        buttonWidget: Container(
-                         child: Icon(Icons.arrow_forward_ios_rounded,
-                         color: Colors.cyan,),
-                       ),
-                       ),
-                     )*/
                     ],
                   ),
                 ),

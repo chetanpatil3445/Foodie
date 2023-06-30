@@ -5,5 +5,8 @@ class MyRoutes{
   static String cart1Route="/cart1";
   static String splashRoute="/splash";
   static String cartRoute="/cart";
+  static String ProfilePageRoute="/profilepage";
+  static String CartScreenRoute="/CartScreen";
+  static String ProductListScreenRoute="/ProductListScreen";
 
 }

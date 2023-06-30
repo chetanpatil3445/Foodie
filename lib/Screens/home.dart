@@ -1,16 +1,16 @@
+import 'dart:async';
 import 'dart:convert';
-
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:foodie/routes.dart';
 import 'package:get/get.dart';
+import 'MapScreen.dart';
 import 'Menu.dart';
-import 'package:foodie/Api_Provider/Api_manager.dart';
-import '../Model/FoodResponse.dart';
-import '../Model/FoodResponse.dart';
-import '../Model/FoodResponse.dart';
-import '../controller/Food_Controller.dart';
 import 'package:http/http.dart' as http;
 import '../Widgets/drawer.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import 'Biryani_Menu.dart';
 
 class home extends StatefulWidget {
   const home({Key? key}) : super(key: key);
@@ -20,24 +20,25 @@ class home extends StatefulWidget {
 }
 
 class _homeState extends State<home> {
-  List<FoodProduct> foodProduct = [];
+  GoogleMapController? _mapController;
+  Set<Marker> _markers = {};
+  String selectedLocation = 'nashik Road';
+  bool _isExpanded = false;
+   final List<String> assetImagePaths = [
+    'asset/images/offer1.jpeg',
+    'asset/images/offer2.jpeg',
+    'asset/images/offer3.jpeg',
+    'asset/images/offer4.jpeg',
 
-  // final FoodController _foodController = Get.isRegistered()?Get.find():Get.put(FoodController());
-  //  final ScrollController _scrollController = ScrollController();
 
-  // final FoodController _foodController = FoodController();
-  // List<Product> _products = [];
-  String selectedLocation = 'gangapur Road';
-
+    // Add more asset image paths as needed
+  ];
    @override
   void initState() {
     super.initState();
 
   }
-
-
-
-  void selectLocation() async {
+/*  void selectLocation() async {
     final result = await showDialog<String>(
       context: context,
       builder: (BuildContext context) {
@@ -67,35 +68,40 @@ class _homeState extends State<home> {
         selectedLocation = result;
       });
     }
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async {
+      // Prevent back button from going back to GetStart page
+      return false;
+    }, child : Scaffold(
         backgroundColor: Color(0xFFEEEEEE),
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.black),
           elevation: 0.0,
           backgroundColor: Color(0xFFEEEEEE),
           title: GestureDetector(
-            //onTap: selectedLocation,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MapScreen(
+                    selectedLocation: selectedLocation,
+                    markers: _markers,
+                  ),
+                ),
+              );
+            },
             child: Row(
               children: [
                 Icon(Icons.location_on, color: Colors.black),
                 SizedBox(width: 8),
-                Text(selectedLocation, style: TextStyle(color: Colors.black),),
+                Text(selectedLocation, style: TextStyle(color: Colors.black)),
               ],
             ),
           ),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.account_circle,),
-              onPressed: () {
-                // Handle account button pressed
-              },
-            ),
-          ],
-
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -150,7 +156,7 @@ class _homeState extends State<home> {
                   )
                 ],
               ),
-              InkWell(
+           /*   InkWell(
                 splashColor: Colors.grey,
                 onTap: () {
 
@@ -174,68 +180,183 @@ class _homeState extends State<home> {
                     ],
                   ),
                 ),
+              ),*/
+
+              SizedBox(width: 10),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Container(
+                      height: 200,
+                      color: Colors.white,
+                      child: HorizontalSliderContainer(assetImagePaths: assetImagePaths),
+                    ),
+
+                  ],
+                ),
               ),
+
               SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Categories", style: TextStyle(
-                      fontSize: 25, fontWeight: FontWeight.w600,),),
-                    Text("View All", style: TextStyle(fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.red),)
+                    Text(
+                      "Categories",
+                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          _isExpanded = !_isExpanded;
+                        });
+                      },
+                      child: Text(
+                        _isExpanded ? "View Less" : "View All",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
               SizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
                   children: [
-                    Stack(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Image.asset('asset/images/Group13.png'),
-                        Positioned(
-                          bottom: 24,
-                          left: 1,
-                          right: 2,
-                          child: InkWell(
+                        Column(
+                          children: [
+                            // The InkWell wrapped around the Image and Text widgets
+                            InkWell(
                               onTap: () {
-                                // Get.toNamed(MyRoutes.menuRoute);
-                                Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) => Menu()));
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => BiryaniMenu()),
+                                );
                               },
-                              child: Image.asset(
-                                'asset/images/Biryani.png', height: 120,)),
+                              child: Image.asset('asset/images/pizza.png', height: 100),
+                            ),
+                            Text(
+                              "Pizza",
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                            )
+                          ],
                         ),
+                        Column(
+                          children: [
+                            // The InkWell wrapped around the Image and Text widgets
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => BiryaniMenu()),
+                                );
+                              },
+                              child: Image.asset('asset/images/chicken biryani.png', height: 100),
+                            ),
+                            Text(
+                              "Biryani",
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                            )
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            // The InkWell wrapped around the Image and Text widgets
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => BiryaniMenu()),
+                                );
+                              },
+                              child: Image.asset('asset/images/roll.png', height: 100),
+                            ),
+                            Text(
+                              "Roll",
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                            )
+                          ],
+                        ),
+
                       ],
                     ),
-                    Stack(
-                      children: [
-                        Image.asset('asset/images/Group14.png'),
-                        Positioned(
-                          bottom: 24,
-                          right: 1,
-                          child: Image.asset('asset/images/fries.png',),
-                        ),
-                      ],
-                    ),
-                    Stack(
-                      children: [
-                        Image.asset('asset/images/Group15.png'),
-                        Positioned(
-                          bottom: 45,
-                          right: 10,
-                          child: Image.asset('asset/images/toco.png'),
-                        ),
-                      ],
-                    ),
+                    if (_isExpanded)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          // Additional items to show when "View All" is tapped
+                          Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // Navigate to the respective page
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => BiryaniMenu()),
+                                  );
+                                },
+                                child: Image.asset('asset/images/burger.jpeg', height: 85),
+                              ),
+                              Text(
+                                "Burger",
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // Navigate to the respective page
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => BiryaniMenu()),
+                                  );
+                                },
+                                child: Image.asset('asset/images/pasta.jpeg', height: 90),
+                              ),
+                              Text(
+                                "Pasta",
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  // Navigate to the respective page
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => BiryaniMenu()),
+                                  );
+                                },
+                                child: Image.asset('asset/images/sandwich.jpeg', height: 90),
+                              ),
+                              Text(
+                                "Sandwich",
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                              ),
+                            ],
+                          ),
+
+
+                        ],
+                      ),
                   ],
                 ),
               ),
+
               SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
@@ -247,50 +368,185 @@ class _homeState extends State<home> {
                   ],
                 ),
               ),
-              SizedBox(height: 15),
-              Container(
-                height: 152,
-                width: 317,
-                child: Image.asset('asset/images/Rectangle9.png'),
+
+              SizedBox(height: 10,),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black)
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                  child: Image.asset('asset/images/cake.jpeg',),
+                ),
               ),
+              SizedBox(height: 10,),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black)
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                  child: Image.asset('asset/images/shake.jpeg',),
+                ),
+              ),
+              SizedBox(height: 10,),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black)
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                  child: Image.asset('asset/images/pepsi.jpeg',),
+                ),
+              ),
+              SizedBox(height: 10,),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black)
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                  child: Image.asset('asset/images/icecream.jpeg',),
+                ),
+              ),
+
+
             ],
           ),
         ),
-
-        drawer: DrawerWidget(),
-
-        bottomNavigationBar: BottomNavigationBar(
-          iconSize: 37,
-          items: const [
-            BottomNavigationBarItem(
-                backgroundColor: Colors.grey,
-                icon: Icon(Icons.home_filled,
-                    color: Colors.black),
-                label: ""
-            ),
-
-            BottomNavigationBarItem(
-                icon: Icon(Icons.favorite,
-                  color: Colors.black,
-                ),
-                label: ""
-            ),
-
-            BottomNavigationBarItem(
-              icon: Icon(Icons.discount,
-                color: Colors.black,
-              ),
-              label: '',
-            ),
-
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person,
-                  color: Colors.black
-              ),
-              label: '',
-            ),
+      drawer: DrawerWidget(),
+      bottomNavigationBar : CurvedNavigationBar(
+          backgroundColor:Colors.transparent,
+          index: 2,
+          items: [
+            Icon(Icons.person_outline,size: 30),
+            Icon(Icons.favorite_outline,size: 30),
+            Icon(Icons.home,size: 30,color: Colors.redAccent),
+            Icon(Icons.restaurant_menu,size: 30),
+            Icon(Icons.discount_outlined,size: 30),
           ],
         ),
-      );
+
+      ),
+    );
+  }
+}
+
+
+
+
+
+/*class HorizontalSliderContainer extends StatelessWidget {
+  final List<String> assetImagePaths;
+
+  HorizontalSliderContainer({required this.assetImagePaths});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      //height: 200,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: assetImagePaths.length,
+        itemBuilder: (context, index) {
+          return Container(
+            width: MediaQuery.of(context).size.width,
+            child: PageView.builder(
+              itemCount: assetImagePaths.length,
+              controller: PageController(initialPage: index),
+              itemBuilder: (context, innerIndex) {
+                return Image.asset(
+                  assetImagePaths[innerIndex],
+                  fit: BoxFit.contain,
+                );
+              },
+            ),
+          );
+        },
+      ),
+    );
+  }
+}*/
+
+class HorizontalSliderContainer extends StatefulWidget {
+  final List<String> assetImagePaths;
+
+  HorizontalSliderContainer({required this.assetImagePaths});
+
+  @override
+  _HorizontalSliderContainerState createState() => _HorizontalSliderContainerState();
+}
+
+class _HorizontalSliderContainerState extends State<HorizontalSliderContainer> {
+  final PageController _pageController = PageController(initialPage: 0);
+  Timer? _timer;
+  int _currentPageIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    // Start the timer when the widget is created
+    _startAutoScroll();
+  }
+
+  @override
+  void dispose() {
+    // Cancel the timer to avoid memory leaks
+    _cancelAutoScroll();
+    super.dispose();
+  }
+
+  void _startAutoScroll() {
+    // Set up a timer that calls _scrollToNextPage every 2 seconds
+    _timer = Timer.periodic(Duration(seconds: 2), (Timer timer) {
+      _scrollToNextPage();
+    });
+  }
+
+  void _scrollToNextPage() {
+    // Calculate the index of the next page
+    int nextPageIndex = (_currentPageIndex + 1) % widget.assetImagePaths.length;
+
+    // Scroll to the next page using the PageController
+    _pageController.animateToPage(
+      nextPageIndex,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.ease,
+    );
+
+    // Update the current page index
+    _currentPageIndex = nextPageIndex;
+  }
+
+  void _cancelAutoScroll() {
+    // Cancel the timer if it's active
+    if (_timer != null && _timer!.isActive) {
+      _timer!.cancel();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      //height: 200,
+      child: PageView.builder(
+        scrollDirection: Axis.horizontal,
+        controller: _pageController,
+        itemCount: widget.assetImagePaths.length,
+        itemBuilder: (context, index) {
+          return Container(
+            width: MediaQuery.of(context).size.width,
+            child: Image.asset(
+              widget.assetImagePaths[index],
+              fit: BoxFit.contain,
+            ),
+          );
+        },
+      ),
+    );
   }
 }
