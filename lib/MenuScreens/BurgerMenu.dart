@@ -3,19 +3,19 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'cart_provider.dart';
+import '../Screens/cart_provider.dart';
 import '../Api_provider/Db_helper.dart';
 import '../Api_provider/cart_model.dart';
-import '../Api_provider/cart_screen.dart';
+import '../Screens/cart_screen.dart';
 
-class ProductListScreen extends StatefulWidget {
-  const ProductListScreen({Key? key}) : super(key: key);
+class BurgerMenu extends StatefulWidget {
+  const BurgerMenu({Key? key}) : super(key: key);
 
   @override
-  _ProductListScreenState createState() => _ProductListScreenState();
+  _BurgerMenuState createState() => _BurgerMenuState();
 }
 
-class _ProductListScreenState extends State<ProductListScreen> {
+class _BurgerMenuState extends State<BurgerMenu> {
 
 
   List<String> productName = ['Chicken' , 'Orange' , 'Grapes' , 'Banana' , 'Chery' , 'Peach','Mixed Fruit Basket',] ;
@@ -23,13 +23,15 @@ class _ProductListScreenState extends State<ProductListScreen> {
   List<int> productPrice = [10, 20 , 30 , 40 , 50, 60 , 70 ] ;
   List<String> productImage = [
 
-    "asset/images/chicken.png",
-    "asset/images/chicken.png",
-    "asset/images/chicken.png",
-    "asset/images/chicken.png",
-    "asset/images/chicken.png",
-    "asset/images/chicken.png",
-    "asset/images/chicken.png",
+    "asset/images/burger.jpeg",
+    "asset/images/burger1.jpeg",
+    "asset/images/burger2.jpeg",
+    "asset/images/burger3.jpeg",
+    "asset/images/burger4.jpeg",
+    "asset/images/burger5.jpeg",
+    "asset/images/burger6.jpeg",
+
+
 
   ] ;
 
@@ -186,3 +188,6 @@ class _ProductListScreenState extends State<ProductListScreen> {
     );
   }
 }
+
+
+

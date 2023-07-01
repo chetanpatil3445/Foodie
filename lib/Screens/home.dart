@@ -4,13 +4,15 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:foodie/routes.dart';
 import 'package:get/get.dart';
+import '../MenuScreens/Biryani_Menu.dart';
+import '../MenuScreens/BurgerMenu.dart';
+import '../MenuScreens/PizzaMenu.dart';
+import '../MenuScreens/RollMenu.dart';
 import 'MapScreen.dart';
 import 'Menu.dart';
 import 'package:http/http.dart' as http;
 import '../Widgets/drawer.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-import 'Biryani_Menu.dart';
 
 class home extends StatefulWidget {
   const home({Key? key}) : super(key: key);
@@ -240,7 +242,7 @@ class _homeState extends State<home> {
                               onTap: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => BiryaniMenu()),
+                                  MaterialPageRoute(builder: (context) => PizzaMenu()),
                                 );
                               },
                               child: Image.asset('asset/images/pizza.png', height: 100),
@@ -261,7 +263,7 @@ class _homeState extends State<home> {
                                   MaterialPageRoute(builder: (context) => BiryaniMenu()),
                                 );
                               },
-                              child: Image.asset('asset/images/chicken biryani.png', height: 100),
+                              child: Image.asset('asset/images/biryani5.png', height: 100),
                             ),
                             Text(
                               "Biryani",
@@ -276,7 +278,7 @@ class _homeState extends State<home> {
                               onTap: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => BiryaniMenu()),
+                                  MaterialPageRoute(builder: (context) => RollMenu()),
                                 );
                               },
                               child: Image.asset('asset/images/roll.png', height: 100),
@@ -302,7 +304,7 @@ class _homeState extends State<home> {
                                   // Navigate to the respective page
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => BiryaniMenu()),
+                                    MaterialPageRoute(builder: (context) => BurgerMenu()),
                                   );
                                 },
                                 child: Image.asset('asset/images/burger.jpeg', height: 85),

@@ -3,9 +3,10 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'Db_helper.dart';
-import 'cart_model.dart';
-import '../Screens/cart_provider.dart';
+import '../Api_provider/Db_helper.dart';
+import '../Api_provider/cart_model.dart';
+import 'Payment_Page.dart';
+import 'cart_provider.dart';
 
 
 class CartScreen extends StatefulWidget {
@@ -26,7 +27,7 @@ class _CartScreenState extends State<CartScreen> {
       appBar: AppBar(
         title: Text('Shopping Cart'),
         centerTitle: true,
-        actions: [
+      /*  actions: [
           Center(
             child: badge.Badge(
               badgeContent: Consumer<CartProvider>(
@@ -41,7 +42,7 @@ class _CartScreenState extends State<CartScreen> {
             ),
           ),
           SizedBox(width: 20.0)
-        ],
+        ],*/
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -222,7 +223,10 @@ class _CartScreenState extends State<CartScreen> {
               child: Consumer<CartProvider>(builder: (context, value, child){
                 return ElevatedButton(
                   onPressed: () {
-
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PaymentPage()),
+                    );
                   },
                   child: Visibility(
                     visible: value.getTotalPrice().toStringAsFixed(2) == "0.00" ? false : true,
@@ -236,6 +240,66 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                   ),
                 );
+                /*  ElevatedButton(
+                    onPressed: () {
+                      // Show the payment options modal bottom sheet
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Container(
+                            padding: EdgeInsets.all(16.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Text(
+                                  'Select a Payment Method:',
+                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(height: 16),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    // Handle PhonePe payment
+                                    // You can add the code to handle the payment process for PhonePe here
+                                    Navigator.pop(context); // Close the modal bottom sheet after payment is done
+                                  },
+                                  child: Text('PhonePe'),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    // Handle Google Pay payment
+                                    // You can add the code to handle the payment process for Google Pay here
+                                    Navigator.pop(context); // Close the modal bottom sheet after payment is done
+                                  },
+                                  child: Text('Google Pay'),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    // Handle credit/debit card payment
+                                    // You can add the code to handle the payment process for credit/debit cards here
+                                    Navigator.pop(context); // Close the modal bottom sheet after payment is done
+                                  },
+                                  child: Text('Credit/Debit Card'),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: Visibility(
+                      visible: value.getTotalPrice().toStringAsFixed(2) == "0.00" ? false : true,
+                      child: Column(
+                        children: [
+                          // ReusableWidget(title: 'Sub Total', value: r'$'+value.getTotalPrice().toStringAsFixed(2),),
+                          // ReusableWidget(title: 'Discout 5%', value: r'$'+'20',),
+                          ReusableWidget(title: 'Place Order', value: r' $'+value.getTotalPrice().toStringAsFixed(2),),
+                        ],
+                      ),
+                    ),
+                  );*/
+
+
               }),
             )
             /*  ElevatedButton(

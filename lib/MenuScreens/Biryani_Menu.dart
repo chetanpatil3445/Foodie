@@ -3,10 +3,10 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'cart_provider.dart';
+import '../Screens/cart_provider.dart';
 import '../Api_provider/Db_helper.dart';
 import '../Api_provider/cart_model.dart';
-import '../Api_provider/cart_screen.dart';
+import '../Screens/cart_screen.dart';
 
 class BiryaniMenu extends StatefulWidget {
   const BiryaniMenu({Key? key}) : super(key: key);
@@ -23,13 +23,13 @@ class _BiryaniMenuState extends State<BiryaniMenu> {
   List<int> productPrice = [10, 20 , 30 , 40 , 50, 60 , 70 ] ;
   List<String> productImage = [
 
-    "asset/images/chicken.png",
-    "asset/images/chicken.png",
-    "asset/images/chicken.png",
-    "asset/images/chicken.png",
-    "asset/images/chicken.png",
-    "asset/images/chicken.png",
-    "asset/images/chicken.png",
+    "asset/images/biryani1.jpeg",
+    "asset/images/biryani2.jpeg",
+    "asset/images/biryani3.jpeg",
+    "asset/images/biryani4.png",
+    "asset/images/biryani5.png",
+    "asset/images/biryani6.jpeg",
+    "asset/images/biryani7.jpeg",
 
   ] ;
 

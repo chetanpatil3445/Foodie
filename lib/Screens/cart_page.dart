@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'Biryani_Menu.dart';
+import '../MenuScreens/Biryani_Menu.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);

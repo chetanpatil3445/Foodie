@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:foodie/Screens/Biryani_Menu.dart';
 import 'package:foodie/Screens/cart_page.dart';
 import 'package:foodie/Screens/home.dart';
 import 'package:foodie/Screens/profile_Page.dart';
 import 'package:foodie/routes.dart';
 import 'package:foodie/Widgets/splash_screen.dart';
 import 'package:provider/provider.dart';
-import 'Api_provider/cart_screen.dart';
-import 'Screens/product_list_screen.dart';
+import 'MenuScreens/Biryani_Menu.dart';
+import 'MenuScreens/PizzaMenu.dart';
+import 'Screens/cart_screen.dart';
 import 'Screens/Menu.dart';
 import 'Screens/cart_provider.dart';
 import 'Screens/getstart_page.dart';
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           MyRoutes.cartRoute:(context)=>const CartPage(),
           MyRoutes.ProfilePageRoute:(context)=>const ProfilePage(),
           MyRoutes.CartScreenRoute:(context)=>const CartScreen(),
-          MyRoutes.ProductListScreenRoute:(context)=>const ProductListScreen(),
+          MyRoutes.ProductListScreenRoute:(context)=>const PizzaMenu(),
 
 
         },

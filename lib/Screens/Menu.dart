@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:foodie/Screens/product_list_screen.dart';
 import 'package:foodie/Screens/home.dart';
 import 'package:foodie/routes.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import '../Api_provider/cart_screen.dart';
-import 'Biryani_Menu.dart';
+import '../MenuScreens/PizzaMenu.dart';
+import 'cart_screen.dart';
 
 class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
@@ -130,7 +129,7 @@ class _MenuState extends State<Menu> {
 
               InkWell(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ProductListScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => PizzaMenu()));
                 },
                 child: Container(
                    color: Colors.white,
