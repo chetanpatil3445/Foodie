@@ -3,7 +3,7 @@ import 'package:foodie/routes.dart';
 import 'package:get/get.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
 
-import 'home.dart';
+import '../Screens/home.dart';
 class getstart extends StatefulWidget {
   const getstart({Key? key}) : super(key: key);
 

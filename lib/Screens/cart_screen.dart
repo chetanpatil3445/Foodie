@@ -25,24 +25,8 @@ class _CartScreenState extends State<CartScreen> {
     final cart  = Provider.of<CartProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Shopping Cart'),
+        title: Text('Food  Cart'),
         centerTitle: true,
-      /*  actions: [
-          Center(
-            child: badge.Badge(
-              badgeContent: Consumer<CartProvider>(
-                builder: (context, value , child){
-                  return Text(value.getCounter().toString(),style: TextStyle(color: Colors.white));
-                },
-
-              ),
-              // animationDuration: Duration(milliseconds: 300),
-              // animationType: BadgeAnimationType.slide,
-              child: Icon(Icons.shopping_cart),
-            ),
-          ),
-          SizedBox(width: 20.0)
-        ],*/
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -240,112 +224,8 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                   ),
                 );
-                /*  ElevatedButton(
-                    onPressed: () {
-                      // Show the payment options modal bottom sheet
-                      showModalBottomSheet(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return Container(
-                            padding: EdgeInsets.all(16.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                Text(
-                                  'Select a Payment Method:',
-                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(height: 16),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    // Handle PhonePe payment
-                                    // You can add the code to handle the payment process for PhonePe here
-                                    Navigator.pop(context); // Close the modal bottom sheet after payment is done
-                                  },
-                                  child: Text('PhonePe'),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    // Handle Google Pay payment
-                                    // You can add the code to handle the payment process for Google Pay here
-                                    Navigator.pop(context); // Close the modal bottom sheet after payment is done
-                                  },
-                                  child: Text('Google Pay'),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    // Handle credit/debit card payment
-                                    // You can add the code to handle the payment process for credit/debit cards here
-                                    Navigator.pop(context); // Close the modal bottom sheet after payment is done
-                                  },
-                                  child: Text('Credit/Debit Card'),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      );
-                    },
-                    child: Visibility(
-                      visible: value.getTotalPrice().toStringAsFixed(2) == "0.00" ? false : true,
-                      child: Column(
-                        children: [
-                          // ReusableWidget(title: 'Sub Total', value: r'$'+value.getTotalPrice().toStringAsFixed(2),),
-                          // ReusableWidget(title: 'Discout 5%', value: r'$'+'20',),
-                          ReusableWidget(title: 'Place Order', value: r' $'+value.getTotalPrice().toStringAsFixed(2),),
-                        ],
-                      ),
-                    ),
-                  );*/
-
-
               }),
             )
-            /*  ElevatedButton(
-                        onPressed: () {
-                          List<Cart> cartItems = cart.getCartItems(); // Get the cart items from CartProvider
-
-                          // Calculate the total price of the cart items
-                          double totalPrice = 0.0;
-                          for (Cart item in cartItems) {
-                            totalPrice += item.productPrice!;
-                          }
-
-                          // Apply a discount of 5% to the total price
-                          double discount = totalPrice * 0.05;
-                          double discountedPrice = totalPrice - discount;
-
-                          // Show a dialog or navigate to the payment method screen with the calculated details
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text('Payment Method'),
-                                content: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text('Total Price: \$${totalPrice.toStringAsFixed(2)}'),
-                                    Text('Discount (5%): \$${discount.toStringAsFixed(2)}'),
-                                    Text('Discounted Price: \$${discountedPrice.toStringAsFixed(2)}'),
-                                    // Add any additional payment method details here
-                                  ],
-                                ),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context); // Close the dialog
-                                    },
-                                    child: Text('Close'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        },
-
-                        child: Text('Place Order'),)*/
           ],
         ),
       ) ,

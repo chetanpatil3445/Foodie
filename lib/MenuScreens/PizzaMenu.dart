@@ -18,9 +18,10 @@ class PizzaMenu extends StatefulWidget {
 class _PizzaMenuState extends State<PizzaMenu> {
 
 
-  List<String> productName = ['Chicken' , 'Orange' , 'Grapes' , 'Banana' , 'Chery' , 'Peach','Mixed Fruit Basket',] ;
-  List<String> productUnit = ['KG' , 'Dozen' , 'KG' , 'Dozen' , 'KG' , 'KG','KG',] ;
-  List<int> productPrice = [10, 20 , 30 , 40 , 50, 60 , 70 ] ;
+  List<String> productName = ['Cheese Overload Pizza' , 'Country Feast Pizza' , 'We Stuff Pizza' ,
+    'Newton’s Pizza' , 'Newton’s Pizza' , 'Newton’s Pizza','Pizza Paradise',] ;
+  List<String> productUnit = ['FOR 1' , 'FOR 1' , 'FOR 1' , 'FOR 1' , 'FOR 1' , 'FOR 1','FOR 1',] ;
+  List<int> productPrice = [150, 140 , 200 , 299 , 259, 189 , 110 ] ;
   List<String> productImage = [
 
     "asset/images/pizza1.jpeg",
@@ -42,7 +43,7 @@ class _PizzaMenuState extends State<PizzaMenu> {
     final cart  = Provider.of<CartProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Product List'),
+        title: Text('pizza menu'),
         centerTitle: true,
         actions: [
           InkWell(
@@ -114,7 +115,7 @@ class _PizzaMenuState extends State<PizzaMenu> {
                                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                                     ),
                                     SizedBox(height: 5,),
-                                    Text(productUnit[index].toString() +" "+r"$"+ productPrice[index].toString() ,
+                                    Text(productUnit[index].toString() +" "+r"₹"+ productPrice[index].toString() ,
                                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                                     ),
                                     SizedBox(height: 5,),

@@ -8,29 +8,29 @@ import '../Api_provider/Db_helper.dart';
 import '../Api_provider/cart_model.dart';
 import '../Screens/cart_screen.dart';
 
-class BurgerMenu extends StatefulWidget {
-  const BurgerMenu({Key? key}) : super(key: key);
+class SandwichMenu extends StatefulWidget {
+  const SandwichMenu({Key? key}) : super(key: key);
 
   @override
-  _BurgerMenuState createState() => _BurgerMenuState();
+  _SandwichMenuState createState() => _SandwichMenuState();
 }
 
-class _BurgerMenuState extends State<BurgerMenu> {
+class _SandwichMenuState extends State<SandwichMenu> {
 
 
-  List<String> productName = ['Angus burger' , 'Aussie Burger/Kiwiburger' , 'Bacon cheese burger' ,
-    'Cheese Mushroom Burger' , 'Peanut Butter Burger' , 'Paddle Burger','Vergin Burger',] ;
+  List<String> productName = ['Grilled Chicken Sandwich' , 'Salad Sandwich' , 'Veggie Delite Sandwich' , 'Peanut Butter and Jelly Sandwich' , 'Caprese Sandwich' , 'Reuben Sandwich','French Dip Sandwich',] ;
   List<String> productUnit = ['FOR 1' , 'FOR 1' , 'FOR 1' , 'FOR 1' , 'FOR 1' , 'FOR 1','FOR 1',] ;
   List<int> productPrice = [75, 110 , 99 , 85 , 125, 110 , 80 ] ;
   List<String> productImage = [
 
-    "asset/images/burger.jpeg",
-    "asset/images/burger1.jpeg",
-    "asset/images/burger2.jpeg",
-    "asset/images/burger3.jpeg",
-    "asset/images/burger4.jpeg",
-    "asset/images/burger5.jpeg",
-    "asset/images/burger6.jpeg",
+    "asset/images/sandwich.jpeg",
+    "asset/images/sandwich1.jpeg",
+    "asset/images/sandwich2.jpeg",
+    "asset/images/sandwich3.jpeg",
+    "asset/images/sandwich4.jpeg",
+    "asset/images/sandwich5.jpeg",
+    "asset/images/sandwich6.jpeg",
+
   ] ;
 
   DBHelper? dbHelper = DBHelper();
@@ -40,7 +40,7 @@ class _BurgerMenuState extends State<BurgerMenu> {
     final cart  = Provider.of<CartProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Burger'),
+        title: Text('Sandwiches'),
         centerTitle: true,
         actions: [
           InkWell(

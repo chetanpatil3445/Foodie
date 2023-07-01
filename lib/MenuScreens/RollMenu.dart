@@ -18,9 +18,9 @@ class RollMenu extends StatefulWidget {
 class _RollMenuState extends State<RollMenu> {
 
 
-  List<String> productName = ['Chicken' , 'Orange' , 'Grapes' , 'Banana' , 'Chery' , 'Peach','Mixed Fruit Basket',] ;
-  List<String> productUnit = ['KG' , 'Dozen' , 'KG' , 'Dozen' , 'KG' , 'KG','KG',] ;
-  List<int> productPrice = [10, 20 , 30 , 40 , 50, 60 , 70 ] ;
+  List<String> productName = ['Veg Roll' , 'Chicken ROll' , 'Anda ROll' , 'Chicken Butter Roll' , 'Panner ROll' , 'Noodles Roll','Manchurian Roll',] ;
+  List<String> productUnit = ['FOR 1' , 'FOR 1' , 'FOR 1' , 'FOR 1' , 'FOR 1' , 'FOR 1','FOR 1',] ;
+  List<int> productPrice = [60, 90 , 80 , 85 , 75, 60 , 80 ] ;
   List<String> productImage = [
 
     "asset/images/roll1.jpeg",
@@ -41,7 +41,7 @@ class _RollMenuState extends State<RollMenu> {
     final cart  = Provider.of<CartProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Product List'),
+        title: Text('Roll'),
         centerTitle: true,
         actions: [
           InkWell(
@@ -113,7 +113,7 @@ class _RollMenuState extends State<RollMenu> {
                                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                                     ),
                                     SizedBox(height: 5,),
-                                    Text(productUnit[index].toString() +" "+r"$"+ productPrice[index].toString() ,
+                                    Text(productUnit[index].toString() +" "+r"₹"+ productPrice[index].toString() ,
                                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                                     ),
                                     SizedBox(height: 5,),

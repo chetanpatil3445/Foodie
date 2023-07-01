@@ -16,16 +16,16 @@ class ProfilePage extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 80,
-              backgroundImage: AssetImage('assets/profile_image.png'),
+              backgroundImage: AssetImage('asset/images/chetan.png'),
             ),
             const SizedBox(height: 16.0),
             Text(
-              'John Doe',
+              'Chetan Patil',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8.0),
             Text(
-              'john.doe@example.com',
+              'patilc146@gmail.com',
               style: TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 16.0),
@@ -39,7 +39,7 @@ class ProfilePage extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.location_on),
               title: Text('Address'),
-              subtitle: Text('123 Main St, City'),
+              subtitle: Text('sandip university nashik'),
               trailing: Icon(Icons.edit),
               onTap: () {
                 // TODO: Implement address editing functionality
@@ -47,9 +47,9 @@ class ProfilePage extends StatelessWidget {
             ),
             const Divider(),
             ListTile(
-              leading: Icon(Icons.credit_card),
-              title: Text('Payment Method'),
-              subtitle: Text('Visa ending in 1234'),
+              leading: Icon(Icons.phone),
+              title: Text('Mobile Number '),
+              subtitle: Text('9511234218'),
               trailing: Icon(Icons.edit),
               onTap: () {
                 // TODO: Implement payment method editing functionality

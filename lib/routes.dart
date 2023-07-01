@@ -8,5 +8,6 @@ class MyRoutes{
   static String ProfilePageRoute="/profilepage";
   static String CartScreenRoute="/CartScreen";
   static String ProductListScreenRoute="/ProductListScreen";
+  static String UserProfilePageRoute="/UserProfilePage";
 
 }

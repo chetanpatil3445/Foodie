@@ -2,7 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:foodie/Screens/getstart_page.dart';
+import 'package:foodie/Widgets/getstart_page.dart';
 import 'package:foodie/routes.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -34,7 +34,7 @@ class DrawerWidget extends StatelessWidget {
               accountEmail: Text("patilc146@gmail.com"),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.white,
-                backgroundImage: AssetImage("asset/images/user.png"),
+                backgroundImage: AssetImage("asset/images/chetan.png"),
                 child: Text(""),
               ),
             ),

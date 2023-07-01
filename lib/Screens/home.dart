@@ -2,17 +2,23 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:foodie/Screens/profile_Page.dart';
 import 'package:foodie/routes.dart';
 import 'package:get/get.dart';
 import '../MenuScreens/Biryani_Menu.dart';
 import '../MenuScreens/BurgerMenu.dart';
+import '../MenuScreens/PastaMenu.dart';
 import '../MenuScreens/PizzaMenu.dart';
 import '../MenuScreens/RollMenu.dart';
+import '../MenuScreens/SandwichMenu.dart';
 import 'MapScreen.dart';
 import 'Menu.dart';
 import 'package:http/http.dart' as http;
 import '../Widgets/drawer.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import 'UserProfilePage.dart';
+import 'cart_screen.dart';
 
 class home extends StatefulWidget {
   const home({Key? key}) : super(key: key);
@@ -22,6 +28,7 @@ class home extends StatefulWidget {
 }
 
 class _homeState extends State<home> {
+  int _currentIndex = 2;
   GoogleMapController? _mapController;
   Set<Marker> _markers = {};
   String selectedLocation = 'nashik Road';
@@ -40,37 +47,6 @@ class _homeState extends State<home> {
     super.initState();
 
   }
-/*  void selectLocation() async {
-    final result = await showDialog<String>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Select Location'),
-          content: TextField(
-            onChanged: (value) {
-              setState(() {
-                selectedLocation = value;
-              });
-            },
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context, selectedLocation);
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        );
-      },
-    );
-
-    if (result != null) {
-      setState(() {
-        selectedLocation = result;
-      });
-    }
-  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -158,32 +134,6 @@ class _homeState extends State<home> {
                   )
                 ],
               ),
-           /*   InkWell(
-                splashColor: Colors.grey,
-                onTap: () {
-
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        //height: 175,
-                        //width: 327,
-                        child: Image.asset('asset/images/Group 11.png'),
-                      ),
-                      Positioned(
-                        top: 40,
-                        left: 140,
-                        height: 146,
-                        width: 190,
-                        child: Image.asset('asset/images/pedi.png'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),*/
-
               SizedBox(width: 10),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -322,7 +272,7 @@ class _homeState extends State<home> {
                                   // Navigate to the respective page
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => BiryaniMenu()),
+                                    MaterialPageRoute(builder: (context) => PastaMenu()),
                                   );
                                 },
                                 child: Image.asset('asset/images/pasta.jpeg', height: 90),
@@ -340,7 +290,7 @@ class _homeState extends State<home> {
                                   // Navigate to the respective page
                                   Navigator.push(
                                     context,
-                                    MaterialPageRoute(builder: (context) => BiryaniMenu()),
+                                    MaterialPageRoute(builder: (context) => SandwichMenu()),
                                   );
                                 },
                                 child: Image.asset('asset/images/sandwich.jpeg', height: 90),
@@ -423,14 +373,31 @@ class _homeState extends State<home> {
       drawer: DrawerWidget(),
       bottomNavigationBar : CurvedNavigationBar(
           backgroundColor:Colors.transparent,
-          index: 2,
+          index: _currentIndex,
           items: [
             Icon(Icons.person_outline,size: 30),
             Icon(Icons.favorite_outline,size: 30),
             Icon(Icons.home,size: 30,color: Colors.redAccent),
             Icon(Icons.restaurant_menu,size: 30),
-            Icon(Icons.discount_outlined,size: 30),
+            Icon(Icons.shopping_cart,size: 30),
           ],
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+          if (index == 4) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CartScreen()),
+            );
+          }
+          if (index == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProfilePage()),
+            );
+          }
+        },
         ),
 
       ),
@@ -440,39 +407,6 @@ class _homeState extends State<home> {
 
 
 
-
-
-/*class HorizontalSliderContainer extends StatelessWidget {
-  final List<String> assetImagePaths;
-
-  HorizontalSliderContainer({required this.assetImagePaths});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      //height: 200,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: assetImagePaths.length,
-        itemBuilder: (context, index) {
-          return Container(
-            width: MediaQuery.of(context).size.width,
-            child: PageView.builder(
-              itemCount: assetImagePaths.length,
-              controller: PageController(initialPage: index),
-              itemBuilder: (context, innerIndex) {
-                return Image.asset(
-                  assetImagePaths[innerIndex],
-                  fit: BoxFit.contain,
-                );
-              },
-            ),
-          );
-        },
-      ),
-    );
-  }
-}*/
 
 class HorizontalSliderContainer extends StatefulWidget {
   final List<String> assetImagePaths;
